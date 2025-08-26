@@ -1,0 +1,5 @@
+package com.emil.chatapplication.enums;
+
+public enum MessageType {
+    CHAT, JOIN, LEAVE
+}

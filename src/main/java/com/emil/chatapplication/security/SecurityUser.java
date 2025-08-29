@@ -1,7 +1,7 @@
 package com.emil.chatapplication.security;
 
 
-import com.emil.chatapplication.entity.User;
+import com.emil.chatapplication.model.entity.User;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;

@@ -1,4 +1,4 @@
-package com.emil.chatapplication.entity;
+package com.emil.chatapplication.model.entity;
 
 import com.emil.chatapplication.enums.UserRole;
 import jakarta.persistence.*;
@@ -8,7 +8,9 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table(name = "users", schema = "chatApp")
@@ -20,6 +22,7 @@ public class User {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String username;
+    private String aboutMe;
     @Column(unique = true)
     @Pattern(regexp = "^\\+?[0-9]{10,13}$", message = "Invalid phone number")
     private String phoneNumber;
@@ -35,5 +38,23 @@ public class User {
             joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "chat_id"))
     private List<Chat> chats = new ArrayList<>();
+
+
+    @ElementCollection(fetch = FetchType.LAZY)
+    @CollectionTable(
+            name = "user_contacts",
+            schema = "chatApp",
+            joinColumns = @JoinColumn(name = "user_id")
+    )
+    private Set<String> contactPhoneNumbers = new HashSet<>();
+
+
+
+
+
+
+
+
+
 
 }

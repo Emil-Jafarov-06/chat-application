@@ -3,6 +3,7 @@ package com.emil.chatapplication.security;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -20,13 +21,13 @@ public class AuthController {
     @Operation(summary = "Register a new user", description = "Registers a new user with the specified credentials.")
     @PostMapping("/register")
     public ResponseEntity<AuthResponse> register(@RequestBody RegisterRequest registerRequest){
-        return ResponseEntity.ok(authService.register(registerRequest));
+        return ResponseEntity.status(HttpStatus.CREATED).body(authService.register(registerRequest));
     }
 
     @Operation(summary = "Login a user", description = "Logs in a user with the specified credentials.")
     @PostMapping("/login")
     public ResponseEntity<AuthResponse> login(@RequestBody LoginRequest loginRequest){
-        return ResponseEntity.ok(authService.login(loginRequest));
+        return ResponseEntity.status(HttpStatus.ACCEPTED).body(authService.login(loginRequest));
     }
 
     @Operation(summary = "Refreshes the token", description = "Refreshes the token of the logged-in user.")
@@ -34,7 +35,7 @@ public class AuthController {
     public ResponseEntity<AuthResponse> refresh(@RequestBody RefreshRequest refreshRequest){
         AuthResponse response = authService.refreshToken(refreshRequest);
         if(response != null) {
-            return ResponseEntity.ok(response);
+            return ResponseEntity.status(HttpStatus.ACCEPTED).body(response);
         } else{
             return ResponseEntity.badRequest().build();
         }

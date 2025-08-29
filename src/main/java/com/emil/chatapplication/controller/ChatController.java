@@ -1,50 +1,24 @@
 package com.emil.chatapplication.controller;
 
-import com.emil.chatapplication.entity.ChatMessage;
-import com.emil.chatapplication.enums.MessageType;
-import com.emil.chatapplication.service.OnlineUserTracker;
 import lombok.RequiredArgsConstructor;
-import org.springframework.messaging.handler.annotation.MessageMapping;
-import org.springframework.messaging.handler.annotation.Payload;
-import org.springframework.messaging.handler.annotation.SendTo;
-import org.springframework.messaging.simp.SimpMessageHeaderAccessor;
-import org.springframework.messaging.simp.SimpMessageSendingOperations;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.*;
 
-import java.util.Objects;
 import java.util.Set;
 
-@Controller
+@RestController
 @RequiredArgsConstructor
+@RequestMapping("/chats")
 public class ChatController {
-
-    private final SimpMessageSendingOperations messagingTemplate;
-    private final OnlineUserTracker onlineUserTracker;
-
-    @MessageMapping("/chat.sendMessage")
-    @SendTo("/topic/public")
-    public ChatMessage sendMessage(@Payload ChatMessage message){
-        return message;
+/*
+    @PostMapping("/chats")
+    @ResponseBody
+    public ChatMessage createChat(@RequestBody ChatCreateRequest request){
+        return ChatMessage.builder()
+                .type(MessageType.CHAT)
+                .sender(request.getSender())
+                .content(request.getContent())
+                .build();
     }
-
-    @MessageMapping("/chat.addUser")
-    public void addUser(@Payload ChatMessage message,
-                        SimpMessageHeaderAccessor headerAccessor){
-        onlineUserTracker.addUser(message.getSender());
-        Objects.requireNonNull(headerAccessor.getSessionAttributes()).put("username", message.getSender());
-
-        messagingTemplate.convertAndSend("/topic/public",
-                ChatMessage.builder()
-                .type(MessageType.JOIN)
-                .sender(message.getSender())
-                .content(message.getSender() + " joined the chat")
-                .build());
-    }
-
-    @GetMapping("/users/online")
-    public Set<String> getOnlineUsers(){
-        return onlineUserTracker.getOnlineUsers();
-    }
+     */
 
 }

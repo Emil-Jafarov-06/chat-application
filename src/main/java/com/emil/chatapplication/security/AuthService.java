@@ -1,6 +1,6 @@
 package com.emil.chatapplication.security;
 
-import com.emil.chatapplication.entity.User;
+import com.emil.chatapplication.model.entity.User;
 import com.emil.chatapplication.enums.UserRole;
 import com.emil.chatapplication.repository.UserRepository;
 import lombok.RequiredArgsConstructor;

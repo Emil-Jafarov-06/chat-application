@@ -1,4 +1,4 @@
-package com.emil.chatapplication.entity;
+package com.emil.chatapplication.model.entity;
 
 import com.emil.chatapplication.enums.ChatType;
 import jakarta.persistence.*;

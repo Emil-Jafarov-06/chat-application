@@ -4,3 +4,11 @@ spring:
     username: postgres
     password: mysecretpassword
     url: jdbc:postgresql://localhost:5432/postgres_db
+
+  jpa:
+    hibernate:
+      ddl-auto: create-drop
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true

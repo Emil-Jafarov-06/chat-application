@@ -2,7 +2,6 @@ package com.emil.chatapplication.service;
 
 import lombok.Getter;
 import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Service;
 
 import java.util.HashSet;
 import java.util.Set;

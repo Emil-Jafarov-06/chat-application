@@ -1,6 +1,6 @@
 package com.emil.chatapplication.config;
 
-import com.emil.chatapplication.entity.ChatMessage;
+import com.emil.chatapplication.model.entity.ChatMessage;
 import com.emil.chatapplication.enums.MessageType;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
